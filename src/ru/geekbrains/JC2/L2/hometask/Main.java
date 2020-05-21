@@ -1,7 +1,7 @@
 package ru.geekbrains.JC2.L2.hometask;
 
 public class Main {
-    public static void main(String[] args){
+    public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
         String inputString = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 test";
 
         String[][] stringArray;
@@ -15,7 +15,7 @@ public class Main {
         System.out.println("sum = " + countSum(intArray));
     }
 
-    public static String[][] parseString(String inputString) {
+    public static String[][] parseString(String inputString) throws MyArraySizeException {
         String[] subArray1;
         String[] subArray2;
 
@@ -51,7 +51,7 @@ public class Main {
     }
 
 
-    public static int[][] changeArray(String[][] incomeArray){
+    public static int[][] changeArray(String[][] incomeArray) throws MyArrayDataException{
         int n = incomeArray.length;
         int[][] resultArray = new int[n][n];
 
@@ -67,7 +67,6 @@ public class Main {
                     System.out.println("Мы не смогли перевести строку в число!");
                     System.out.println("В данном значении массива хранится строка: " + incomeArray[i][j]);
                 }
-
             }
         }
 
