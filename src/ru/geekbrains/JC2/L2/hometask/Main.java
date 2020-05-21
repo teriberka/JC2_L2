@@ -11,10 +11,14 @@ package ru.geekbrains.JC2.L2.hometask;
 // MyArrayDataException и вывести результат расчета.
 
 
+import java.util.Arrays;
+
 public class Main {
+    private static final int NORMAL_LENGTH = 4;
+
     public static void main(String[] args) throws MyArraySizeException, MyArrayDataException {
-//        String inputString = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 0";
-        String inputString = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 test";
+        String inputString = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 0";
+//        String inputString = "10 3 1 2\n2 3 2 2\n5 6 7 1\n300 3 1 test";
 
         String[][] stringArray;
         int[][] intArray;
@@ -28,25 +32,15 @@ public class Main {
     }
 
     public static String[][] parseString(String inputString) throws MyArraySizeException {
-        String[] subArray1;
-        String[] subArray2;
-
-        subArray1 = inputString.split("\n");
+        String[] subArray1 = inputString.split("\n");
 
         int n = subArray1.length;
+        if (n != NORMAL_LENGTH) throw new MyArraySizeException("Размер матрицы не 4x4", subArray1.length);
 
-        String[][] resultArray = new String[n][n];
+        String[][] resultArray = new String[n][];
 
         for (int i = 0; i < subArray1.length; i++) {
-//            System.out.println(subArray1[i]);
-            subArray2 = subArray1[i].split(" ");
-
-            if (subArray1.length != 4 || subArray2.length != 4) throw new MyArraySizeException("Размер матрицы не 4x4", subArray1.length);
-
-            for (int j = 0; j < subArray2.length; j++) {
-//                System.out.println(subArray2[j]);
-                resultArray[i][j] = subArray2[j];
-            }
+            resultArray[i] = subArray1[i].split(" ");
         }
 
         return resultArray;
@@ -55,10 +49,12 @@ public class Main {
 
     public static void printArray(String[][] incomeArray){
         for (int i = 0; i < incomeArray.length; i++){
-            for(int j = 0; j < incomeArray.length; j++){
-                System.out.print(incomeArray[i][j] + " ");
-            }
-            System.out.println(" ");
+//            for(int j = 0; j < incomeArray.length; j++){
+//                System.out.print(incomeArray[i][j] + " ");
+//            }
+//            System.out.println(" ");
+
+            System.out.println(Arrays.toString(incomeArray[i]));
         }
     }
 
@@ -97,7 +93,9 @@ public class Main {
 
         for (int i=0; i < incomeArray.length; i++){
             for (int j=0; j< incomeArray.length; j++){
-                sum = sum + incomeArray[i][j];
+//                sum = sum + incomeArray[i][j];
+                sum += incomeArray[i][j];
+
             }
         }
         return sum / 2;
